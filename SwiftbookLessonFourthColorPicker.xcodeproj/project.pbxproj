@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		C444D63428DE178A00D832A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C444D63328DE178A00D832A2 /* AppDelegate.swift */; };
 		C444D63628DE178A00D832A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C444D63528DE178A00D832A2 /* SceneDelegate.swift */; };
-		C444D63828DE178A00D832A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C444D63728DE178A00D832A2 /* ViewController.swift */; };
+		C444D63828DE178A00D832A2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C444D63728DE178A00D832A2 /* SettingsViewController.swift */; };
 		C444D63B28DE178A00D832A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C444D63928DE178A00D832A2 /* Main.storyboard */; };
 		C444D63D28DE178B00D832A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C444D63C28DE178B00D832A2 /* Assets.xcassets */; };
 		C444D64028DE178B00D832A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C444D63E28DE178B00D832A2 /* LaunchScreen.storyboard */; };
+		C4D3A30428F5C24C003E00E5 /* ColoredPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D3A30328F5C24C003E00E5 /* ColoredPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C444D63028DE178A00D832A2 /* SwiftbookLessonFourthColorPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftbookLessonFourthColorPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C444D63328DE178A00D832A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C444D63528DE178A00D832A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C444D63728DE178A00D832A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C444D63728DE178A00D832A2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C444D63A28DE178A00D832A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C444D63C28DE178B00D832A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C444D63F28DE178B00D832A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C444D64128DE178B00D832A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4D3A30328F5C24C003E00E5 /* ColoredPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			children = (
 				C444D63328DE178A00D832A2 /* AppDelegate.swift */,
 				C444D63528DE178A00D832A2 /* SceneDelegate.swift */,
-				C444D63728DE178A00D832A2 /* ViewController.swift */,
+				C444D63728DE178A00D832A2 /* SettingsViewController.swift */,
+				C4D3A30328F5C24C003E00E5 /* ColoredPageViewController.swift */,
 				C444D63928DE178A00D832A2 /* Main.storyboard */,
 				C444D63C28DE178B00D832A2 /* Assets.xcassets */,
 				C444D63E28DE178B00D832A2 /* LaunchScreen.storyboard */,
@@ -138,8 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C444D63828DE178A00D832A2 /* ViewController.swift in Sources */,
+				C444D63828DE178A00D832A2 /* SettingsViewController.swift in Sources */,
 				C444D63428DE178A00D832A2 /* AppDelegate.swift in Sources */,
+				C4D3A30428F5C24C003E00E5 /* ColoredPageViewController.swift in Sources */,
 				C444D63628DE178A00D832A2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
