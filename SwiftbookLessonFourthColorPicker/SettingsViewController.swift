@@ -92,7 +92,7 @@ class SettingsViewController: UIViewController {
         doneToolbar.barStyle = .default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(doneButtonAction))
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
         
         doneToolbar.items = [flexSpace, doneButton]
         doneToolbar.sizeToFit()
@@ -137,8 +137,8 @@ extension SettingsViewController: UITextFieldDelegate {
               numberValue <= 1 && numberValue >= 0
         else {
             showAlert(
-                with: "Неверный формат данных",
-                and: "Попробуйте использовать только цифры в диапазоне от 0 до 1",
+                with: "Incorrect data format",
+                and: "Try using only numbers from 0 to 1",
                 handler: textField
             )
             return
