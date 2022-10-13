@@ -32,19 +32,21 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         coloredView.layer.cornerRadius = 10
         
-        redSliderOutlet.value = Float(color.rgba.red)
-        greenSliderOutlet.value = Float(color.rgba.green)
-        blueSliderOutlet.value = Float(color.rgba.blue)
+        let ciColor = CIColor(color: color)
+        redSliderOutlet.value = Float(ciColor.red)
+        greenSliderOutlet.value = Float(ciColor.green)
+        blueSliderOutlet.value = Float(ciColor.blue)
         
         changeColor()
-        redLineConfigure()
-        greenLineConfigure()
-        blueLineConfigure()
+        lineConfigure(slider: redSliderOutlet, label: redLabel, textField: redColorTextField)
+        lineConfigure(slider: greenSliderOutlet, label: greenLabel, textField: greenColorTextField)
+        lineConfigure(slider: blueSliderOutlet, label: blueLabel, textField: blueColorTextField)
         
         textFieldsDelegate()
         addDoneButtonOnKeyboard()
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
     
@@ -58,27 +60,23 @@ class SettingsViewController: UIViewController {
         changeColor()
         switch sender {
         case redSliderOutlet:
-            redLineConfigure()
+            lineConfigure(slider: redSliderOutlet,
+                          label: redLabel,
+                          textField: redColorTextField)
         case greenSliderOutlet:
-            greenLineConfigure()
+            lineConfigure(slider: greenSliderOutlet,
+                          label: greenLabel,
+                          textField: greenColorTextField)
         default:
-            blueLineConfigure()
+            lineConfigure(slider: blueSliderOutlet,
+                          label: blueLabel,
+                          textField: blueColorTextField)
         }
     }
     
-    private func redLineConfigure() {
-        redLabel.text = string(from: redSliderOutlet)
-        redColorTextField.text = string(from: redSliderOutlet)
-    }
-    
-    private func greenLineConfigure() {
-        greenLabel.text = string(from: greenSliderOutlet)
-        greenColorTextField.text = string(from: greenSliderOutlet)
-    }
-    
-    private func blueLineConfigure() {
-        blueLabel.text = string(from: blueSliderOutlet)
-        blueColorTextField.text = string(from: blueSliderOutlet)
+    private func lineConfigure(slider: UISlider, label: UILabel, textField: UITextField) {
+        label.text = string(from: slider)
+        textField.text = self.string(from: slider)
     }
     
     private func textFieldsDelegate() {
@@ -88,11 +86,18 @@ class SettingsViewController: UIViewController {
     }
     
     private func addDoneButtonOnKeyboard() {
-        let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-        doneToolbar.barStyle = .default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
+        let doneToolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
+        let doneButton = UIBarButtonItem(
+            title: "Done",
+            style: .done,
+            target: self,
+            action: #selector(doneButtonAction)
+        )
         
         doneToolbar.items = [flexSpace, doneButton]
         doneToolbar.sizeToFit()
@@ -119,23 +124,13 @@ class SettingsViewController: UIViewController {
     }
 }
 
-extension UIColor {
-    var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-        var red: CGFloat = 0
-        var green: CGFloat = 0
-        var blue: CGFloat = 0
-        var alpha: CGFloat = 0
-        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        return (red, green, blue, alpha)
-    }
-}
-
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let newValue = textField.text,
               let numberValue = Double(newValue),
               numberValue <= 1 && numberValue >= 0
         else {
+            textField.shake()
             showAlert(
                 with: "Incorrect data format",
                 and: "Try using only numbers from 0 to 1",
@@ -143,15 +138,16 @@ extension SettingsViewController: UITextFieldDelegate {
             )
             return
         }
+        textField.text = String(format: "%.2f", numberValue)
         switch textField {
         case redColorTextField:
-            redSliderOutlet.value = Float(numberValue)
+            redSliderOutlet.setValue(Float(numberValue), animated: true)
             redLabel.text = string(from: redSliderOutlet)
         case greenColorTextField:
-            greenSliderOutlet.value = Float(numberValue)
+            greenSliderOutlet.setValue(Float(numberValue), animated: true)
             greenLabel.text = string(from: greenSliderOutlet)
         default:
-            blueSliderOutlet.value = Float(numberValue)
+            blueSliderOutlet.setValue(Float(numberValue), animated: true)
             blueLabel.text = string(from: blueSliderOutlet)
         }
         changeColor()
@@ -166,5 +162,14 @@ extension UIViewController {
         }
         alert.addAction(alertAction)
         present(alert, animated: true)
+    }
+}
+extension UIView {
+    func shake() {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.duration = 0.6
+        animation.values = [-10.0, 10.0, -10.0, 10.0, -7.0, 7.0, -5.0, 5.0, 0.0 ]
+        layer.add(animation, forKey: "shake")
     }
 }
